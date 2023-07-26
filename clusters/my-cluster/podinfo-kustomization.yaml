@@ -16,7 +16,6 @@ spec:
       target:
         name: podinfo
         kind: HorizontalPodAutoscaler
-
   interval: 30m0s
   path: ./kustomize
   prune: true
