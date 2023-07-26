@@ -1,19 +1,20 @@
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: pod-demo
-  namespace: prod
-  labels:
-    app: myapp
+  name: nginx-deployment
 spec:
-  containers:
-  - name: test1
-    image: nginx:latest
-    imagePullPolicy: IfNotPresent
-    ports:
-    - containerPort: 80
-  - name: test2
-    image: nginx:latest
-    imagePullPolicy: IfNotPresent
-    ports:
-    - containerPort: 80
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
